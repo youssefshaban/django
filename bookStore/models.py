@@ -1,8 +1,12 @@
+from tabnanny import verbose
+
 from django.db import models
 from django.contrib.auth.models import User
 import random
 
 class Category(models.Model):
+    class Meta :
+        verbose_name_plural = 'categories'
 
 
     name = models.CharField(max_length=25)
