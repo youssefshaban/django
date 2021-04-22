@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from .form import BookForm
+from .form import BookForm, CatForm
 from .models import bookStore
 
 
@@ -20,6 +20,15 @@ def create(request):
     return render(request,'bookStore/create.html',{
         'form': form
     })
+def createCat(request):
+    form = CatForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('index')
+    return render(request,'bookStore/createCat.html',{
+        'form': form
+    })
+
 
 
 def edit(request, id):

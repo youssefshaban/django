@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 import random
 
 class Category(models.Model):
+
+
     name = models.CharField(max_length=25)
 
     def __str__(self):
