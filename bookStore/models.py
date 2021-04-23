@@ -1,13 +1,17 @@
 from tabnanny import verbose
-
+from django import forms
 from django.db import models
 from django.contrib.auth.models import User
 import random
+from django.contrib.auth.forms import UserCreationForm
+
+
+
+
 
 class Category(models.Model):
-    class Meta :
+    class Meta:
         verbose_name_plural = 'categories'
-
 
     name = models.CharField(max_length=25)
 
@@ -19,13 +23,11 @@ def create_new_ref_number():
 
 
 class Isbn(models.Model):
-    OtherTitle= models.CharField(max_length=255)
-    SN= models.CharField(max_length=10, unique=True, default=create_new_ref_number())
+    OtherTitle = models.CharField(max_length=255)
+    SN = models.CharField(max_length=10, unique=True, default=create_new_ref_number())
 
     def __str__(self):
         return f"{self.OtherTitle} Title | {self.SN} serial Number"
-
-
 
 
 class bookStore(models.Model):
@@ -34,8 +36,6 @@ class bookStore(models.Model):
     author = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name="books")
     isbn = models.ForeignKey(Isbn, on_delete=models.CASCADE, null=True, blank=True)
     category = models.ManyToManyField(Category, null=True, blank=True)
-
-
 
     def __str__(self):
         return self.title
