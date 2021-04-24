@@ -3,9 +3,8 @@ from rest_framework import status
 from .serializers import BooksSerializer, UserSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, BasePermission
-from rest_framework import generics
 from ..models import bookStore
-from rest_framework import viewsets
+
 
 
 
@@ -45,7 +44,7 @@ def apiSignup(request):
 
 
 @api_view(['GET'])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def index(request):
     books = bookStore.objects.all()
     serializer = BooksSerializer(instance=books, many=True)
@@ -77,5 +76,10 @@ def update(request,id):
         'success': False
     }, status=status.HTTP_400_BAD_REQUEST)
 
-
+@api_view(['GET'])
+# @permission_classes([IsAuthenticated])
+def getByID(request,id):
+    books = bookStore.objects.get(pk=id)
+    serializer = BooksSerializer(instance=books, many=False)
+    return Response(data=serializer.data, status=status.HTTP_200_OK)
 

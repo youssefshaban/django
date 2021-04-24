@@ -8,6 +8,7 @@ urlpatterns = [
     path('create', views.Create),
     path('delete/<int:id>', views.delete),
     path('update/<int:id>', views.update),
-    path('', views.index),
+    path('get/<int:id>', views.getByID),
+    path('list', views.index),
 
 ]

@@ -15,8 +15,6 @@ class BooksSerializer(serializers.ModelSerializer):
         book.delete()
 
 
-
-
 class UserSerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(write_only=True)
 
