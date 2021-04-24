@@ -54,9 +54,9 @@ MIDDLEWARE = [
 
 ]
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
+    'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication'
-]
+    ]
 }
 
 ROOT_URLCONF = 'books.urls'

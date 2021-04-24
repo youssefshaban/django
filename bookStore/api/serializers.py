@@ -11,6 +11,7 @@ class BooksSerializer(serializers.ModelSerializer):
 
     def delete(self):
         id = self.data.get('id')
+        print(self.data)
         book = bookStore.objects.get(pk=id)
         book.delete()
 
